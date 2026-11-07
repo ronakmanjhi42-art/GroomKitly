@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pet Grooming Profit Calculator (Free) | GroomKitly</title>
+<meta name="description" content="Calculate pet grooming profits, expenses, margins, and hourly earnings with GroomKitly's free calculator for US grooming businesses.">
+<link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pet Grooming Profit Calculator (Free) | GroomKitly">
+<meta property="og:description" content="Free calculator for dog groomers: see profit, margin, profit per hour and break-even price for every appointment.">
+<meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/">
+<meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/og-image.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#142B49">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23142B49'/%3E%3Cpath d='M9 17l5 5 9-12' fill='none' stroke='%2312A89D' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"GroomKitly Pet Grooming Profit Calculator","url":"https://YOUR-USERNAME.github.io/YOUR-REPO/","description":"Free calculator that estimates profit, margin, profit per hour and break-even price for a pet grooming appointment.","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","inLanguage":"en-US","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"audience":{"@type":"Audience","audienceType":"Pet groomers and grooming business owners in the United States"}}
+</script>
+<style>
+:root{--navy:#142B49;--teal:#12A89D;--teal-d:#0B7A72;--bg:#F7F9FC;--card:#fff;--text:#1d2b3f;--muted:#51607a;--line:#dbe2ec;--good:#0b7a43;--good-bg:#e6f6ec;--bad:#b3261e;--bad-bg:#fdecea;--neutral-bg:#eef1f6;--shadow:0 1px 3px rgba(20,43,73,.08),0 4px 14px rgba(20,43,73,.05)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%}
+a{color:var(--teal-d)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--navy);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 16px}
+h1,h2,h3{color:var(--navy);line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3.5vw,1.9rem)}
+h3{font-size:1.1rem}
+p{margin:0 0 1em}
+/* nav */
+header.site{background:var(--navy);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:60px;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:1.25rem}
+.logo span{color:var(--teal)}
+.menu-btn{display:inline-flex;background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
+.links{display:none;width:100%;padding-bottom:12px;flex-direction:column;gap:2px}
+.links.open{display:flex}
+.links a{color:#e8eef7;text-decoration:none;padding:10px 8px;border-radius:8px}
+.links a:hover{background:rgba(255,255,255,.1)}
+@media(min-width:760px){.menu-btn{display:none}.links{display:flex;width:auto;flex-direction:row;padding:0;gap:4px}}
+/* hero */
+.hero{background:var(--navy);color:#e8eef7;padding:40px 0 72px}
+.hero h1{color:#fff;max-width:20ch}
+.hero p{max-width:60ch;font-size:1.05rem}
+.btn{display:inline-block;border:0;border-radius:10px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;min-height:44px}
+.btn-primary{background:var(--teal);color:#06242a}
+.btn-primary:hover{background:#17bfb2}
+.btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--neutral-bg)}
+.note-hero{font-size:.9rem;color:#b9c7da;margin-top:14px}
+/* calculator */
+.calc-section{margin-top:-44px;position:relative}
+.grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:900px){.grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start}}
+.card{background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:20px;border:1px solid #eef2f7}
+fieldset{border:0;padding:0;margin:0 0 18px;min-width:0}
+legend{font-weight:700;color:var(--navy);font-size:1.05rem;padding:0;margin-bottom:10px}
+.field{margin-bottom:12px}
+.field label{display:block;font-weight:600;font-size:.92rem;margin-bottom:4px}
+.field .hint{font-weight:400;color:var(--muted)}
+.input-wrap{position:relative}
+.input-wrap .u{position:absolute;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:.95rem}
+.input-wrap .pre{left:12px}.input-wrap .suf{right:12px}
+input[type=number]{width:100%;min-height:46px;padding:10px 12px;font:inherit;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}
+.input-wrap.p input{padding-left:28px}.input-wrap.s input{padding-right:48px}
+input[type=number]:hover{border-color:#b5c0d0}
+input[aria-invalid=true]{border-color:var(--bad);background:#fffafa}
+.err{color:var(--bad);font-size:.82rem;margin-top:3px;min-height:0}
+.row2{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:480px){.row2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.example-tag{display:inline-block;background:var(--neutral-bg);color:var(--muted);font-size:.82rem;padding:4px 10px;border-radius:999px;margin-bottom:14px}
+/* results */
+.results h2{margin-bottom:12px}
+.metrics{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.metric{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;min-width:0}
+.metric .k{font-size:.82rem;color:var(--muted)}
+.metric .v{font-size:clamp(1.15rem,4vw,1.5rem);font-weight:800;color:var(--navy);overflow-wrap:anywhere}
+.metric.big{grid-column:1/-1;transition:background .15s}
+.metric.big .v{font-size:clamp(1.6rem,6vw,2.1rem)}
+.state-pos{background:var(--good-bg);border-color:#a6dcb9}.state-pos .v{color:var(--good)}
+.state-neg{background:var(--bad-bg);border-color:#f1b5b0}.state-neg .v{color:var(--bad)}
+.state-zero{background:var(--neutral-bg)}
+.verdict{font-size:.9rem;margin:12px 0}
+.bars{margin-top:14px}
+.bar-row{display:grid;grid-template-columns:minmax(0,110px) minmax(0,1fr) 64px;gap:8px;align-items:center;font-size:.85rem;margin-bottom:6px}
+.bar-track{background:var(--neutral-bg);border-radius:6px;height:12px;overflow:hidden}
+.bar-fill{display:block;height:100%;background:var(--teal);border-radius:6px;width:0}
+.bar-row .amt{text-align:right;font-variant-numeric:tabular-nums}
+.status{min-height:1.4em;font-size:.9rem;color:var(--good);margin-top:8px}
+.disclaimer{font-size:.82rem;color:var(--muted);margin-top:10px}
+/* content */
+section.block{padding:48px 0 0}
+.prose{max-width:75ch}
+.prose ul,.prose ol{padding-left:1.25em;margin:0 0 1em}
+.prose li{margin-bottom:.4em}
+code.f{display:block;background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);padding:8px 12px;border-radius:8px;margin:6px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.table-wrap{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;min-width:320px;background:#fff;font-size:.93rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:var(--neutral-bg);color:var(--navy)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.benefits{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:700px){.benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.benefits .card h3{margin-bottom:.3em}
+.benefits .card p{margin:0;color:var(--muted)}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:0}
+summary{cursor:pointer;padding:14px 16px;font-weight:700;color:var(--navy);min-height:44px}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .ans{padding:12px 16px 4px}
+footer{background:var(--navy);color:#cbd6e5;margin-top:64px;padding:32px 0;font-size:.92rem}
+footer a{color:#fff}
+footer .fl{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0;padding:0;list-style:none}
+@media print{header.site,.hero,.actions,.prose,section.block,footer,.skip{display:none!important}.calc-section{margin:0}.card{box-shadow:none;border:1px solid #999}.inputs-card{display:none}.grid{display:block}body{background:#fff}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="GroomKitly home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#12A89D"/><path d="M9 17l5 5 9-12" fill="none" stroke="#142B49" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>Groom<span>Kitly</span></div>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <nav class="links" id="navLinks" aria-label="Main navigation">
+      <a href="#calculator">Calculator</a>
+      <a href="#formulas">Formulas</a>
+      <a href="#example">Example</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div id="top" class="hero">
+  <div class="wrap">
+    <h1>Pet Grooming Profit Calculator</h1>
+    <p>Enter what you charge and what each appointment costs you. GroomKitly shows your real profit, margin, profit per hour, and the lowest price that breaks even, instantly and for free.</p>
+    <a class="btn btn-primary" href="#calculator">Calculate my profit</a>
+    <p class="note-hero">Built for independent, mobile, and salon groomers in the US. Works offline. No sign-up.</p>
+  </div>
+</div>
+
+<section class="calc-section" id="calculator" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="grid">
+      <div class="card inputs-card">
+        <h2 id="calc-h">Dog Grooming Profit Calculator</h2>
+        <span class="example-tag">Values shown are examples. Replace them with your own numbers.</span>
+        <form id="calcForm" novalidate onsubmit="return false">
+          <fieldset>
+            <legend>Revenue</legend>
+            <div class="row2">
+              <div class="field"><label for="price">Grooming service price</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="price" inputmode="decimal" min="0" step="0.01" value="100" data-label="Service price"></div><div class="err" id="err-price"></div></div>
+              <div class="field"><label for="tip">Customer tip</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="tip" inputmode="decimal" min="0" step="0.01" value="0" data-label="Tip"></div><div class="err" id="err-tip"></div></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Expenses</legend>
+            <div class="row2">
+              <div class="field"><label for="hours">Grooming duration <span class="hint">(hours)</span></label>
+                <div class="input-wrap s"><input type="number" id="hours" inputmode="decimal" min="0" step="0.25" value="2" data-label="Duration"><span class="u suf" aria-hidden="true">hrs</span></div><div class="err" id="err-hours"></div></div>
+              <div class="field"><label for="rate">Labor cost per hour</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="rate" inputmode="decimal" min="0" step="0.01" value="15" data-label="Labor rate"></div><div class="err" id="err-rate"></div></div>
+              <div class="field"><label for="supplies">Grooming supplies cost</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="supplies" inputmode="decimal" min="0" step="0.01" value="10" data-label="Supplies"></div><div class="err" id="err-supplies"></div></div>
+              <div class="field"><label for="travel">Travel cost</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="travel" inputmode="decimal" min="0" step="0.01" value="10" data-label="Travel"></div><div class="err" id="err-travel"></div></div>
+              <div class="field"><label for="overhead">Allocated overhead cost</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="overhead" inputmode="decimal" min="0" step="0.01" value="0" data-label="Overhead"></div><div class="err" id="err-overhead"></div></div>
+              <div class="field"><label for="other">Other expenses</label>
+                <div class="input-wrap p"><span class="u pre" aria-hidden="true">$</span><input type="number" id="other" inputmode="decimal" min="0" step="0.01" value="0" data-label="Other expenses"></div><div class="err" id="err-other"></div></div>
+              <div class="field"><label for="fee">Payment processing fee <span class="hint">(%)</span></label>
+                <div class="input-wrap s"><input type="number" id="fee" inputmode="decimal" min="0" step="0.01" value="0" data-label="Processing fee"><span class="u suf" aria-hidden="true">%</span></div><div class="err" id="err-fee"></div></div>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button type="button" class="btn btn-ghost" id="resetBtn">Reset to example values</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card results" id="results" aria-labelledby="res-h">
+        <h2 id="res-h">Your results</h2>
+        <div class="metrics">
+          <div class="metric big state-pos" id="profitBox"><div class="k">Net job profit</div><div class="v" id="r-profit">$0.00</div></div>
+          <div class="metric"><div class="k">Total revenue</div><div class="v" id="r-rev">$0.00</div></div>
+          <div class="metric"><div class="k">Total expenses</div><div class="v" id="r-exp">$0.00</div></div>
+          <div class="metric"><div class="k">Profit margin</div><div class="v" id="r-margin">N/A</div></div>
+          <div class="metric"><div class="k">Profit per hour</div><div class="v" id="r-hour">N/A</div></div>
+          <div class="metric" style="grid-column:1/-1"><div class="k">Break-even service price</div><div class="v" id="r-be">$0.00</div></div>
+        </div>
+        <p class="verdict" id="verdict" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="bars" id="bars" aria-label="Expense breakdown">
+          <h3>Expense breakdown</h3>
+          <div id="barRows"></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="copyBtn">Copy results</button>
+          <button type="button" class="btn btn-ghost" id="printBtn">Print results</button>
+        </div>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+        <p class="disclaimer">Results are estimates based on the numbers you enter. They are not accounting, tax, or financial advice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="what" aria-labelledby="what-h">
+  <div class="wrap prose">
+    <h2 id="what-h">What is a pet grooming profit calculator?</h2>
+    <p>A pet grooming profit calculator shows how much money one grooming appointment actually earns after you subtract the costs of doing the job. Many groomers know what they charge, but not what is left once labor, shampoo, blades, fuel, and card fees are paid. This tool does that math for you, as you type.</p>
+    <h3>Revenue, expenses, and profit</h3>
+    <ul>
+      <li><strong>Revenue</strong> is money coming in: the service price plus any tip.</li>
+      <li><strong>Expenses</strong> are money going out because of that appointment.</li>
+      <li><strong>Profit</strong> is what remains: revenue minus expenses.</li>
+    </ul>
+    <h3>Why labor and travel costs matter</h3>
+    <p>If you groom alone, it is easy to treat your own time as free. Putting a labor rate on every hour shows whether a long, difficult groom pays you fairly. Mobile groomers should also count fuel, vehicle wear, and drive time, because a cheap-looking job across town can cost more than it earns.</p>
+  </div>
+</section>
+
+<section class="block" id="how" aria-labelledby="how-h">
+  <div class="wrap prose">
+    <h2 id="how-h">How to use the calculator</h2>
+    <ol>
+      <li>Enter the service price and any tip for a typical appointment.</li>
+      <li>Enter how many hours the groom takes, start to finish, and the hourly labor cost you want to pay yourself or an employee.</li>
+      <li>Add supplies, travel, overhead (such as a share of rent, insurance, or software), and other costs.</li>
+      <li>Add your card processing percentage, if you take card payments.</li>
+      <li>Read the results. They update as you type. Try a higher price to see how profit changes.</li>
+    </ol>
+    <h3>How to calculate profit per grooming appointment</h3>
+    <p>Add up every cost tied to the appointment, then subtract that total from the money you collect. Dividing the profit by the hours worked gives profit per hour, which is the fairest way to compare a quick bath with a full haircut.</p>
+  </div>
+</section>
+
+<section class="block" id="formulas" aria-labelledby="form-h">
+  <div class="wrap prose">
+    <h2 id="form-h">Calculator formulas</h2>
+    <code class="f">Total Revenue = Service Price + Tip</code>
+    <code class="f">Labor Cost = Grooming Duration × Labor Cost per Hour</code>
+    <code class="f">Processing Fee = Total Revenue × Processing Fee % ÷ 100</code>
+    <code class="f">Total Expenses = Labor + Supplies + Travel + Overhead + Other + Processing Fee</code>
+    <code class="f">Net Job Profit = Total Revenue − Total Expenses</code>
+    <code class="f">Profit Margin (%) = Net Job Profit ÷ Total Revenue × 100</code>
+    <code class="f">Profit per Hour = Net Job Profit ÷ Grooming Duration</code>
+    <h3>How to estimate a break-even grooming price</h3>
+    <p>The break-even price is the lowest service price at which profit is exactly $0. The calculator holds your tip fixed and applies the card fee to both the price and the tip:</p>
+    <code class="f">Break-Even Price = [Non-Processing Expenses ÷ (1 − Fee Rate)] − Tip</code>
+    <p>Fee Rate is the processing percentage divided by 100. Non-processing expenses are labor, supplies, travel, overhead, and other costs. If the result is below zero, the calculator shows $0.00. If the fee is 100% or more, no price can cover the costs, so it shows "Not achievable". Break-even is a floor, not a target: you still need room for profit.</p>
+  </div>
+</section>
+
+<section class="block" id="example" aria-labelledby="ex-h">
+  <div class="wrap prose">
+    <h2 id="ex-h">Worked example</h2>
+    <p>A groomer charges $100 for a 2-hour appointment with no tip and no card fee. Labor is $15 per hour, supplies are $10, and travel is $10.</p>
+    <div class="table-wrap">
+    <table>
+      <caption class="sr" style="position:absolute;left:-999px">Worked grooming profit example</caption>
+      <thead><tr><th scope="col">Step</th><th scope="col">Calculation</th><th scope="col">Result</th></tr></thead>
+      <tbody>
+        <tr><td>Total revenue</td><td>$100 + $0</td><td class="n">$100.00</td></tr>
+        <tr><td>Labor cost</td><td>2 hrs × $15</td><td class="n">$30.00</td></tr>
+        <tr><td>Total expenses</td><td>$30 + $10 + $10 + $0 + $0 + $0</td><td class="n">$50.00</td></tr>
+        <tr><td>Net job profit</td><td>$100 − $50</td><td class="n">$50.00</td></tr>
+        <tr><td>Profit margin</td><td>$50 ÷ $100</td><td class="n">50%</td></tr>
+        <tr><td>Profit per hour</td><td>$50 ÷ 2 hrs</td><td class="n">$25.00</td></tr>
+        <tr><td>Break-even price</td><td>$50 ÷ (1 − 0) − $0</td><td class="n">$50.00</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:12px">These numbers are only an illustration. Your costs will differ by region, breed, coat condition, and business model.</p>
+    <h3>Common grooming pricing mistakes</h3>
+    <ul>
+      <li>Charging a flat price for dogs that take very different amounts of time.</li>
+      <li>Leaving out your own labor, or paying yourself nothing.</li>
+      <li>Ignoring travel time and fuel on mobile routes.</li>
+      <li>Forgetting card fees, insurance, software, and rent.</li>
+      <li>Counting tips as guaranteed income when setting prices.</li>
+      <li>Never revisiting prices as supply and fuel costs change.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="benefits" aria-labelledby="ben-h">
+  <div class="wrap">
+    <h2 id="ben-h">Benefits for grooming business owners</h2>
+    <div class="benefits">
+      <div class="card"><h3>See the real cost of every groom</h3><p>Know what an appointment costs before you quote a price.</p></div>
+      <div class="card"><h3>Compare jobs by hourly profit</h3><p>Find out which services pay well for your time and which do not.</p></div>
+      <div class="card"><h3>Set a price floor</h3><p>The break-even price shows the minimum you can charge without losing money.</p></div>
+      <div class="card"><h3>Private and free</h3><p>Everything is calculated in your browser. Nothing you type is sent anywhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq" aria-labelledby="faq-h">
+  <div class="wrap prose">
+    <h2 id="faq-h">Frequently asked questions</h2>
+    <details><summary>What is a good profit margin for dog grooming?</summary><div class="ans"><p>It varies with your location, services, and how you pay yourself. Instead of chasing one number, decide what hourly profit and margin you need to cover your goals, then use the calculator to test prices against it.</p></div></details>
+    <details><summary>Should I include my own time as labor cost?</summary><div class="ans"><p>Yes, in most cases. Using a realistic hourly rate for yourself shows whether the business pays you fairly. If you want to see profit before paying yourself, enter $0 as the labor rate.</p></div></details>
+    <details><summary>What counts as overhead?</summary><div class="ans"><p>Overhead is the cost of running the business that is not tied to one dog: rent, insurance, software, licenses, vehicle payments, and marketing. Estimate a fair share per appointment by dividing monthly overhead by your typical number of monthly appointments.</p></div></details>
+    <details><summary>How do I use this for a mobile grooming business?</summary><div class="ans"><p>Enter fuel and vehicle costs in the travel field, include drive time in the duration if you want to be paid for it, and add van-related costs such as water, generator, or maintenance under overhead or other expenses.</p></div></details>
+    <details><summary>Why does break-even show "Not achievable"?</summary><div class="ans"><p>This appears when the processing fee is 100% or higher. At that rate the fee takes all of the money collected, so no price can cover your costs.</p></div></details>
+    <details><summary>Is my data saved or shared?</summary><div class="ans"><p>No. Calculations happen in your browser, and the page does not store or send your numbers.</p></div></details>
+    <details><summary>Is this tax or accounting advice?</summary><div class="ans"><p>No. The calculator gives estimates from the numbers you enter. For tax or financial decisions, talk to a qualified accountant.</p></div></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong style="color:#fff">GroomKitly</strong> — free pet grooming business tools
+    <ul class="fl">
+      <li><a href="#about">About</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#terms">Terms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p id="about" style="margin:0 0 .5em">About: placeholder. Replace this with a short description of who runs GroomKitly.</p>
+    <p id="privacy" style="margin:0 0 .5em">Privacy Policy: placeholder. Replace with your policy before adding ads or analytics.</p>
+    <p id="terms" style="margin:0 0 .5em">Terms: placeholder. Replace with your terms of use.</p>
+    <p id="contact" style="margin:0 0 .5em">Contact: placeholder. Add your email address here.</p>
+    <p style="margin:1em 0 0;font-size:.85rem">Calculator results are estimates and are not accounting, tax, or financial advice. &copy; <span id="yr">2026</span> GroomKitly.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var DEFAULTS = {price:100,tip:0,hours:2,rate:15,supplies:10,travel:10,overhead:0,other:0,fee:0};
+  var IDS = Object.keys(DEFAULTS);
+  var last = null;
+
+  function $(id){return document.getElementById(id);}
+  var usd = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"});
+  function money(n){ if(n===null||!isFinite(n)) return "N/A"; if(Math.abs(n)<0.005) n=0; return usd.format(n); }
+  function round2(n){ return Math.round(n*100)/100; }
+
+  // Read inputs safely: blank = 0, negative or invalid = flagged and treated as 0
+  function readInputs(){
+    var vals = {}, valid = true;
+    IDS.forEach(function(id){
+      var el = $(id), err = $("err-"+id), raw = el.value.trim(), msg = "";
+      var n = raw === "" ? 0 : Number(raw);
+      if (raw !== "" && !isFinite(n)) { msg = "Enter a valid number."; n = 0; }
+      else if (n < 0) { msg = "Enter 0 or more."; n = 0; }
+      else if (id === "fee" && n > 100) { msg = "Enter a percentage from 0 to 100."; n = 100; }
+      el.setAttribute("aria-invalid", msg ? "true" : "false");
+      if (msg) { el.setAttribute("aria-describedby","err-"+id); valid = false; } else { el.removeAttribute("aria-describedby"); }
+      err.textContent = msg;
+      vals[id] = n;
+    });
+    vals.valid = valid;
+    return vals;
+  }
+
+  function compute(v){
+    var revenue = v.price + v.tip;
+    var labor = v.hours * v.rate;
+    var feeAmt = revenue * v.fee / 100;
+    var nonProc = labor + v.supplies + v.travel + v.overhead + v.other;
+    var expenses = nonProc + feeAmt;
+    var profit = revenue - expenses;
+    var margin = revenue > 0 ? profit / revenue * 100 : null;
+    var perHour = v.hours > 0 ? profit / v.hours : null;
+    var feeRate = v.fee / 100, be;
+    if (feeRate >= 1) { be = null; }
+    else { be = nonProc / (1 - feeRate) - v.tip; if (be < 0) be = 0; }
+    return {revenue:revenue,labor:labor,feeAmt:feeAmt,nonProc:nonProc,expenses:expenses,profit:profit,margin:margin,perHour:perHour,be:be,v:v};
+  }
+
+  function pct(n){ return n===null||!isFinite(n) ? "N/A" : (Math.round(n*10)/10).toLocaleString("en-US")+"%"; }
+
+  function render(){
+    var v = readInputs(), r = compute(v);
+    last = r;
+    var p = round2(r.profit);
+    $("r-rev").textContent = money(r.revenue);
+    $("r-exp").textContent = money(r.expenses);
+    $("r-profit").textContent = money(p);
+    $("r-margin").textContent = pct(r.margin);
+    $("r-hour").textContent = r.perHour === null ? "N/A" : money(r.perHour);
+    $("r-be").textContent = r.be === null ? "Not achievable" : money(r.be);
+
+    var box = $("profitBox");
+    box.className = "metric big " + (p > 0 ? "state-pos" : p < 0 ? "state-neg" : "state-zero");
+
+    var text;
+    if (p > 0) text = "This appointment earns a profit of " + money(p) + ".";
+    else if (p < 0) text = "This appointment loses " + money(Math.abs(p)) + ". Expenses are higher than revenue.";
+    else text = "This appointment breaks even: no profit and no loss.";
+    if (r.be === null) text += " Break-even pricing is not achievable with a processing fee of 100%.";
+    $("verdict").textContent = text;
+
+    var items = [["Labor",r.labor],["Supplies",v.supplies],["Travel",v.travel],["Overhead",v.overhead],["Other",v.other],["Processing fee",r.feeAmt]];
+    var total = r.expenses, html = "";
+    items.forEach(function(it){
+      var w = total > 0 ? Math.round(it[1]/total*1000)/10 : 0;
+      html += '<div class="bar-row"><span>'+it[0]+'</span><span class="bar-track" role="presentation"><span class="bar-fill" style="width:'+w+'%"></span></span><span class="amt">'+money(it[1])+'</span></div>';
+    });
+    $("barRows").innerHTML = html;
+  }
+
+  function summary(){
+    var r = last, v = r.v;
+    return [
+      "GroomKitly Pet Grooming Profit Estimate",
+      "Service price: "+money(v.price)+" | Tip: "+money(v.tip),
+      "Duration: "+v.hours+" hrs | Labor rate: "+money(v.rate)+"/hr | Processing fee: "+v.fee+"%",
+      "Total revenue: "+money(r.revenue),
+      "Total expenses: "+money(r.expenses),
+      "Net job profit: "+money(round2(r.profit)),
+      "Profit margin: "+pct(r.margin),
+      "Profit per hour: "+(r.perHour===null?"N/A":money(r.perHour)),
+      "Break-even service price: "+(r.be===null?"Not achievable":money(r.be)),
+      "Estimates only; not accounting or financial advice."
+    ].join("\n");
+  }
+
+  var statusTimer;
+  function say(msg){
+    var s = $("status"); s.textContent = "";
+    setTimeout(function(){ s.textContent = msg; }, 30);
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function(){ s.textContent = ""; }, 4000);
+  }
+
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  $("copyBtn").addEventListener("click", function(){
+    var text = summary();
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){ say("Results copied to clipboard."); },
+        function(){ say(fallbackCopy(text) ? "Results copied to clipboard." : "Copy failed. Select the results and copy them manually."); });
+    } else {
+      say(fallbackCopy(text) ? "Results copied to clipboard." : "Copy failed. Select the results and copy them manually.");
+    }
+  });
+  $("printBtn").addEventListener("click", function(){ window.print(); });
+  $("resetBtn").addEventListener("click", function(){
+    IDS.forEach(function(id){ $(id).value = DEFAULTS[id]; });
+    render(); say("Example values restored.");
+  });
+  IDS.forEach(function(id){ $(id).addEventListener("input", render); });
+
+  var mb = $("menuBtn"), nl = $("navLinks");
+  mb.addEventListener("click", function(){
+    var open = nl.classList.toggle("open");
+    mb.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  nl.addEventListener("click", function(e){
+    if (e.target.tagName === "A") { nl.classList.remove("open"); mb.setAttribute("aria-expanded","false"); }
+  });
+
+  $("yr").textContent = new Date().getFullYear();
+  render();
+})();
+</script>
+</body>
+</html>
